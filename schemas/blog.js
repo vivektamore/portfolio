@@ -10,19 +10,77 @@ export default {
     },
     {
       name: 'content',
-      type: 'string',
-      title: 'Content'
+      title: 'Content',
+      type: 'array',
+      of: [
+        {
+          type: 'block'
+        },
+        {
+          type: 'image',
+          fields: [
+            {
+              type: 'text',
+              name: 'alt',
+              title: 'Alternative text',
+              description: `Some of your visitors cannot see images, 
+                be they blind, color-blind, low-sighted; 
+                alternative text is of great help for those 
+                people that can rely on it to have a good idea of 
+                what\'s on your page.`,
+              options: {
+                isHighlighted: true
+              }
+            }
+          ]
+        }
+      ]
+    },{
+      name: 'metadesc',
+      title: 'Meta Description',
+      type: 'string'
     },
     {
-      title: 'Launch Scedule At',
-      name: 'LaunchAt',
-      type: 'datetime',
+      title: 'Blog Image',
+      name: 'blogImage',
+      type: 'image',
       options: {
-        dateFormat: 'YYYY-MM-DD',
-        timeFormat: 'HH:mm',
-        timeStep: 20,
-        calendarTodayLabel: 'Today'
-      }
+        hotspot: true // <-- Defaults to false
+      },
+      fields: [
+        {
+          name: 'caption',
+          type: 'string',
+          title: 'Caption',
+          options: {
+            isHighlighted: true // <-- make this field easily accessible
+          }
+        },
+        {
+          // Editing this field will be hidden behind an "Edit"-button
+          name: 'attribution',
+          type: 'string',
+          title: 'Attribution',
+        }
+      ]
+    },
+    {
+      title: 'Created At',
+      name: 'createdAt',
+      type: 'datetime',
+
+    },
+    {
+      name: 'author',
+      type: 'object',
+      fields: [
+        {
+          title: 'Author',
+          name: 'author',
+          type: 'reference',
+          to: [{type: 'author'}]
+        }
+      ]
     }
   ]
 }
